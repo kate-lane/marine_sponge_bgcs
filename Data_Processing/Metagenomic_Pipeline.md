@@ -33,6 +33,19 @@ checkm2 predict --threads 30 --input /assembly/${i}_megahit_min1000/bins_dir/  -
 
 #Retain only bins with Completeness > 70 and Contamination < 10
 
+## Dereplication (for each metagenome separately)
+for i in `cat identifiers_mesophotic_bgc.txt`
+do
+
+	dRep dereplicate /dereplicated_mesophotic_genomes/drep_${i}_98 \
+		-g /proj/hansel-lab/klane/sponges_2024_01_22/binning/${i}/*.fasta \
+		-sa 0.98 \
+		-pa 0.9 \
+		--S_algorithm ANImf \
+		-comp 70 \
+		-con 10 \
+		-p 24
+
 ## MAG abundances
 coverm genome -b /assembly/${i}_megahit_min1000/aln-pe.sorted.bam --genome-fasta-directory /assembly/${i}_megahit_min1000/bins_dir/filtered_bins/renamed_bins -x fa --methods mean relative_abundance
 
@@ -40,7 +53,8 @@ coverm genome -b /assembly/${i}_megahit_min1000/aln-pe.sorted.bam --genome-fasta
 gtdbtk classify_wf --genome_dir /assembly/${i}_megahit_min1000/bins_dir/ --out_dir /assembly/gtdbtk/${i}_gtdbtk -x fa
 
 ## METABOLIC-C
-perl METABOLIC-C.pl -in-gn /METABOLIC/${i}_bins -r /raw.d/${i}_clean -o /METABOLIC/${i}_metabolic-C
+perl METABOLIC-C.pl -in-gn /METABOLIC/${i}_bins -r /METABOLIC/${i}_reads.txt -o /METABOLIC/${i}_metabolic-C
+
 
 ## antiSMASH
 antismash "$fasta" \
