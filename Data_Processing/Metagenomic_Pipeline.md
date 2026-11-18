@@ -34,9 +34,8 @@ checkm2 predict --threads 30 --input /assembly/${i}_megahit_min1000/bins_dir/  -
 #Retain only bins with Completeness > 70 and Contamination < 10
 
 ## Dereplication (for each metagenome separately)
-for i in `cat identifiers_mesophotic_bgc.txt`
+for i in \`cat identifiers_mesophotic_bgc.txt\`
 do
-
 	dRep dereplicate /dereplicated_mesophotic_genomes/drep_${i}_98 \
 		-g /proj/hansel-lab/klane/sponges_2024_01_22/binning/${i}/*.fasta \
 		-sa 0.98 \
