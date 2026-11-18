@@ -43,7 +43,7 @@ do <br>
 &emsp;&emsp;--S_algorithm ANImf \
 &emsp;&emsp;-comp 70 \
 &emsp;&emsp;-con 10 \
-&emsp;&emsp;-p 24
+&emsp;&emsp;-p 24 \
 done
 
 ## MAG abundances
