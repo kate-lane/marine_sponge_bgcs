@@ -34,7 +34,7 @@ checkm2 predict --threads 30 --input /assembly/${i}_megahit_min1000/bins_dir/  -
 #Retain only bins with Completeness > 70 and Contamination < 10
 
 ## Dereplication (for each metagenome separately)
-for i in \`cat identifiers_mesophotic_bgc.txt\`
+for i in `cat identifiers_mesophotic_bgc.txt`
 do
 	dRep dereplicate /dereplicated_mesophotic_genomes/drep_${i}_98 \
 		-g /proj/hansel-lab/klane/sponges_2024_01_22/binning/${i}/*.fasta \
@@ -44,6 +44,7 @@ do
 		-comp 70 \
 		-con 10 \
 		-p 24
+done
 
 ## MAG abundances
 coverm genome -b /assembly/${i}_megahit_min1000/aln-pe.sorted.bam --genome-fasta-directory /assembly/${i}_megahit_min1000/bins_dir/filtered_bins/renamed_bins -x fa --methods mean relative_abundance
