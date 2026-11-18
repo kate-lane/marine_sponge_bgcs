@@ -36,14 +36,14 @@ checkm2 predict --threads 30 --input /assembly/${i}_megahit_min1000/bins_dir/  -
 ## Dereplication (for each metagenome separately)
 for i in \`cat identifiers_mesophotic_bgc.txt\` <br>
 do <br>
-	dRep dereplicate /dereplicated_mesophotic_genomes/drep_${i}_98 \
-		-g /proj/hansel-lab/klane/sponges_2024_01_22/binning/${i}/*.fasta \
-		-sa 0.98 \
-		-pa 0.9 \
-		--S_algorithm ANImf \
-		-comp 70 \
-		-con 10 \
-		-p 24
+&emsp;dRep dereplicate /dereplicated_mesophotic_genomes/drep_${i}_98 \
+&emsp;&emsp;-g /proj/hansel-lab/klane/sponges_2024_01_22/binning/${i}/*.fasta \
+&emsp;&emsp;-sa 0.98 \
+&emsp;&emsp;-pa 0.9 \
+&emsp;&emsp;--S_algorithm ANImf \
+&emsp;&emsp;-comp 70 \
+&emsp;&emsp;-con 10 \
+&emsp;&emsp;-p 24
 done
 
 ## MAG abundances
